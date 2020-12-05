@@ -9,15 +9,16 @@ router.get('/login', function(req, res) {
 });
 
 router.get('/logged', function(req, res) {
-    res.render('');
+    res.render('user');
 });
 
 router.post('/logout', function(req, res) {
   logout.logoutUser(req, res, function(err, data) {
     if (err) {
-      res.json({ 'error': data.error, 'message': data.message });
+      console.log("error");
+      res.redirect('/');
     } else {
-      res.json({ 'success': data.success, 'message': data.message });
+      res.redirect('/login');
     }
   });
 });
@@ -25,9 +26,10 @@ router.post('/logout', function(req, res) {
 router.post('/signup', function(req, res) {
   signup.addUser(req, res, function(err, data) {
     if (err) {
-      res.json({ 'error': true, 'message': 'Error adding user .. !' });
+      console.log('Error adding user .. !');
+      res.redirect(400,'/');
     } else {
-      res.json({ 'success': true, 'message': 'User added succesfully' });
+      res.redirect('/login');
     }
   });
 });
@@ -37,7 +39,8 @@ router.post('/login', function(req, res) {
     if (err) {
       res.json({ 'error': true, 'message': 'Error logged in' });
     } else {
-      res.json({ 'success': true, 'data': data });
+      res.json({ 'error': true, 'data': data });
+      //res.render('user.ejs', { title: 'User Details', userData: data});
     }
   });
 });

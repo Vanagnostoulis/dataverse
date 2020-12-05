@@ -11,12 +11,12 @@
   <div id="login" class="modal"> 
     <form class="modal-content animate" action="/login" method="post">
       <div class="container">
-        <label for="header_login" ><p style="text-align:center; font-size: 17px;"><b style="border-bottom: 3px solid #009999;"> Είσοδος </b></p></label>
+        <label for="header_login" ><p style="text-align:left; font-size: 17px;"><b style="border-bottom: 3px solid #009999;"> Είσοδος </b></p></label>
+        <i class="fa fa-user fa-all"></i>
         <input type="text" id="user" placeholder="Email χρήστη" style="font-family:Arial, FontAwesome" onclick="document.getElementById('user').style.borderColor='#668cff';" name="email" required>
-      <i class="fa fa-user fa-all"></i>
-        <input type="password" id="psw" placeholder="Κωδικός" style="font-family:Arial, FontAwesome" onclick="document.getElementById('psw').style.borderColor='#668cff';" name="psw" required>  
-        <i class="fa fa-lock fa-all"></i>
-        <button type="submit" class="loginbtn" style="font-family:Arial, FontAwesome"><b>Είσοδος</b></button>
+        <br><i class="fa fa-lock fa-all"></i>
+        <input type="password" id="password" placeholder="Κωδικός" style="font-family:Arial, FontAwesome" onclick="document.getElementById('psw').style.borderColor='#668cff';" name="password" required>  
+        <br><button type="submit" class="loginbtn" style="font-family:Arial, FontAwesome"><b>Είσοδος</b></button>
       </div>
     </form>
   </div>

@@ -12,28 +12,44 @@
   </head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <body>
-	<div class="topnav">
-		<a href='/'> <img src="./dataverse.png" style="width:120px; height:50px; padding: 0px 16px"></img> </a>
-		<a href='#' id='profileImage' onclick="document.getElementById('dropdown').style.display='block'"></a>
-	</div>
-<!-- Dropdown content after user clicks on profileImage. -->
 	<div class="dropdown-content" id='dropdown'>
 		<form action='/' method="get">
 			<button id='initial'>Αρχική</button>
 		</form>
-		<form action='/logout' method="get">   
+		<form action='/logout' method="post">   
 			<button id='logout_btn' >Αποσύνδεση</button>	
 		</form>
 	</div>
-	
-	<script>
-		var logout = document.getElementById("profileImage");
-		window.onclick = function(event) {		    
-		    if (event.target != logout) {
-		        document.getElementById('dropdown').style.display = "none";
-		    }
-		}
-	</script>  
+	<div class="table-data">
+	<h2>Display Data using Node.js & MySQL</h2>
+    <table border="1">
+        <tr>
+            <th>Name </th>
+            <th>Last Name</th>
+            <th>Email Address</th>
+            <th>Phone Number</th>
+            <th>Company</th>
+        </tr>
+        <%
+        if(userData.length!=0){
+        var i=1;
+        userData.forEach(function(data){
+        %>
+        <tr>
+            <td><%=data.Name %></td>
+            <td><%=data.LastName %></td>
+            <td><%=data.Email  %></td>
+            <td><%=data.Phone %></td>
+            <td><%=data.Company %></td>
+        </tr>
+        <%  i++; }) %>
+        <% } else{ %>
+            <tr>
+                <td colspan="7">No Data Found</td>
+            </tr>
+        <% } %>
+    </table>
+    </div>
 </body>
 </html>
 
