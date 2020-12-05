@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/css/user.css">
+<link rel="stylesheet" type="text/css" href="../public/css/user.css">
+<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <div id="login" class="modal"> 
+    <form class="modal-content animate" action="/login" method="post">
+      <div class="container">
+        <label for="header_login" ><p style="text-align:center; font-size: 17px;"><b style="border-bottom: 3px solid #009999;"> Είσοδος </b></p></label>
+        <input type="text" id="user" placeholder="Email χρήστη" style="font-family:Arial, FontAwesome" onclick="document.getElementById('user').style.borderColor='#668cff';" name="email" required>
+      <i class="fa fa-user fa-all"></i>
+        <input type="password" id="psw" placeholder="Κωδικός" style="font-family:Arial, FontAwesome" onclick="document.getElementById('psw').style.borderColor='#668cff';" name="psw" required>  
+        <i class="fa fa-lock fa-all"></i>
+        <button type="submit" class="loginbtn" style="font-family:Arial, FontAwesome"><b>Είσοδος</b></button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
+

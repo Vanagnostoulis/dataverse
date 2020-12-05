@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+	<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+	<script src="https://js.api.here.com/v3/3.0/mapsjs-core.js"
+	type="text/javascript" charset="utf-8"></script>
+	<script src="https://js.api.here.com/v3/3.0/mapsjs-service.js"
+	type="text/javascript" charset="utf-8"></script>
+  </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <body>
+	<div class="topnav">
+		<a href='/'> <img src="./dataverse.png" style="width:120px; height:50px; padding: 0px 16px"></img> </a>
+		<a href='#' id='profileImage' onclick="document.getElementById('dropdown').style.display='block'"></a>
+	</div>
+<!-- Dropdown content after user clicks on profileImage. -->
+	<div class="dropdown-content" id='dropdown'>
+		<form action='/' method="get">
+			<button id='initial'>Αρχική</button>
+		</form>
+		<form action='/logout' method="get">   
+			<button id='logout_btn' >Αποσύνδεση</button>	
+		</form>
+	</div>
+	
+	<script>
+		var logout = document.getElementById("profileImage");
+		window.onclick = function(event) {		    
+		    if (event.target != logout) {
+		        document.getElementById('dropdown').style.display = "none";
+		    }
+		}
+	</script>  
+</body>
+</html>
+

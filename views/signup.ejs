@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/css/user.css">
+<link rel="stylesheet" type="text/css" href="../public/css/user.css">
+<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="./verificaiton.js"></script>
+</head>
+<body>
+  <div id="signup" class="modal"> 
+    <form class="modal-content animate" onsubmit="return PasswordValidator(event)" action="/signup" method="post">
+      <div class="container">
+        <script type="text/javascript">
+          function PasswordValidator(e) {
+              var passwordstrength = document.getElementById('pass-reg');
+              var regex = new Array();
+              regex.push("[A-Z]"); //Uppercase Alphabet.
+              regex.push("[a-z]"); //Lowercase Alphabet.
+              regex.push("[0-9]"); //Digit.
+              regex.push("[!@#$%^&*]"); //Special Character.
+
+              var passed = 0;
+              for (var i = 0; i < regex.length; i++) {
+                  if (new RegExp(regex[i]).test(passwordstrength.value)) {
+                      passed++;
+                  }
+              }
+              if (!(passed > 3)) {
+                  alert("Password must contain at least 1 capital letter,\n\n1 small letter, 1 number and 1 special character.\n\nFor special characters you can pick one of these: \n -,(,!,@,#,$,),%,<,>");
+                  e.preventDefault();
+                  res.render('/');
+                  return false;
+              }
+              else{
+                return true;
+              }
+          }
+        </script>
+        
+        <label for="header_signup"><p style="text-align:left; font-size: 17px; font: cursive;"><b style="border-bottom: 3px solid #009999;"> Εγγραφή </b></p></label>
+        <input type="text" id="fname" placeholder="First Name" style="font-family:Arial, FontAwesome" onclick="document.getElementById('email-reg').style.borderColor='#668cff';" name="fname" required><br>
+        <input type="text" id="lname" placeholder="Last Name" style="font-family:Arial, FontAwesome" onclick="document.getElementById('email-reg').style.borderColor='#668cff';" name="lname" required><br>
+        <input type="text" id="email-reg" placeholder="Email" style="font-family:Arial, FontAwesome" onclick="document.getElementById('email-reg').style.borderColor='#668cff';" name="email" required><br>
+        <input type="password" id="pass-reg" placeholder="Password" style="font-family:Arial, FontAwesome" onclick="document.getElementById('pass-reg').style.borderColor='#668cff';" name="pass-reg" required><br>
+        <input type="password" id="repass-reg" placeholder="Repeat password" style="font-family:Arial, FontAwesome" onclick="document.getElementById('repass-reg').style.borderColor='#668cff';"  name="repass-reg" required><br>
+        <input type="text" id="phone" placeholder="Phone Number" style="font-family:Arial, FontAwesome" onclick="document.getElementById('email-reg').style.borderColor='#668cff';" name="phone"><br>
+        <input type="text" id="company" placeholder="Company" style="font-family:Arial, FontAwesome" onclick="document.getElementById('email-reg').style.borderColor='#668cff';" name="company"><br>
+        <button type="submit"  class="loginbtn"><b>Εγγραφή</b></button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
+
