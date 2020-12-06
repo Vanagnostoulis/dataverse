@@ -19,12 +19,24 @@
     </form>
   </div>
   <div id="signup" class="modal"> 
-    <form class="modal-content animate" onsubmit="return PasswordValidator(event)" action="/signup" method="post">
+    <form class="modal-content animate" onsubmit="return EmailAndPasswordValidator(event)" action="/signup" method="post">
       <div class="container">
         <script type="text/javascript">
-          
-		function PasswordValidator(e) {
+        
+        function emailIsValid(email) {
+            return ( /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(email))
+        }
+		function EmailAndPasswordValidator(e) {
             var passwordstrength = document.getElementById('pass_reg');
+            var email = document.getElementById('email-reg').value;
+            if (!emailIsValid(email))
+            {
+                alert("Not a valid email format.");
+                e.preventDefault();
+                res.render('/');
+                return false;
+            }
+
             var regex = new Array();
             regex.push("[A-Z]"); //Uppercase Alphabet.
             regex.push("[a-z]"); //Lowercase Alphabet.
