@@ -7,8 +7,8 @@ var DB = function(){};
 DB.prototype.createPool = function(){
 	return mysql.createPool({
 		host: 'localhost',
-		user: 'root',
-		password: 'vasilis1',
+		user: 'USERNAME_HERE',
+		password: 'PASSWORD_HERE',
 		database: 'dataverse_anagn'
 	});
 }
