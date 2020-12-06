@@ -8,18 +8,17 @@
 <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  <div id="login" class="modal"> 
-    <form class="modal-content animate" action="/login" method="post">
-      <div class="container">
-        <label for="header_login" ><p style="text-align:center; font-size: 17px;"><b style="border-bottom: 3px solid #009999;"> Είσοδος </b></p></label>
-        <input type="text" id="user" placeholder="Email χρήστη" style="font-family:Arial, FontAwesome" onclick="document.getElementById('user').style.borderColor='#668cff';" name="email" required>
-      <i class="fa fa-user fa-all"></i>
-        <input type="password" id="psw" placeholder="Κωδικός" style="font-family:Arial, FontAwesome" onclick="document.getElementById('psw').style.borderColor='#668cff';" name="psw" required>  
-        <i class="fa fa-lock fa-all"></i>
-        <button type="submit" class="loginbtn" style="font-family:Arial, FontAwesome"><b>Είσοδος</b></button>
-      </div>
-    </form>
-  </div>
+  <div class="dropdown-content" id='dropdown'>
+      <form action='/' method="get">
+        <button id='initial'>Αρχική</button>
+      </form>
+      <form action='/login' method="post">   
+        <button id='login_btn' > Σύνδεση</button>  
+      </form>
+      <form action='/signup' method="get">
+        <button id='initial'> Εγγραφή</button>
+      </form>
+    </div>
 </body>
 </html>
 

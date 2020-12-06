@@ -5,20 +5,42 @@ var express = require('express'),
     signup  = require('../models/users/signup.js');
 
 router.get('/login', function(req, res) {
-    res.render('login');
+  // prevent back button on revealing stuff
+  res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+  res.header('Expires', '-1');
+  res.header('Pragma', 'no-cache');// if no user logged in or someone logged out go to first page
+  res.render('login');
+});
+
+router.get('/signup', function(req, res) {
+  // prevent back button on revealing stuff
+  res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+  res.header('Expires', '-1');
+  res.header('Pragma', 'no-cache');// if no user logged in or someone logged out go to first page
+  res.render('signup');
 });
 
 router.get('/logged', function(req, res) {
-    res.render('user');
+  // prevent back button on revealing stuff
+  res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+  res.header('Expires', '-1');
+  res.header('Pragma', 'no-cache');// if no user logged in or someone logged out go to first page
+  login.getCredentials(req, res, function(err, data) {
+    if (err) {
+      res.redirect('/login');
+    } else {
+      res.render('user', { title: 'User List', userData: data});
+    }
+  });
 });
 
 router.post('/logout', function(req, res) {
   logout.logoutUser(req, res, function(err, data) {
     if (err) {
-      console.log("error");
+      console.log("error logging out");
       res.redirect('/');
     } else {
-      res.redirect('/login');
+      res.redirect('/');
     }
   });
 });
@@ -37,10 +59,10 @@ router.post('/signup', function(req, res) {
 router.post('/login', function(req, res) {
   login.loginUser(req, res, function(err, data) {
     if (err) {
-      res.json({ 'error': true, 'message': 'Error logged in' });
+      console.log("Error in log in" )
+      res.redirect('/login');
     } else {
-      res.json({ 'error': true, 'data': data });
-      //res.render('user.ejs', { title: 'User Details', userData: data});
+      res.redirect('/logged');
     }
   });
 });

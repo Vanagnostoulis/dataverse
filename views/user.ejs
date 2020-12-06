@@ -21,33 +21,20 @@
 		</form>
 	</div>
 	<div class="table-data">
-	<h2>Display Data using Node.js & MySQL</h2>
+	<h2>Display User Data</h2>
     <table border="1">
         <tr>
-            <th>Name </th>
-            <th>Last Name</th>
+            <th>  Name  </th>
+            <td><%=userData.Name %></td>
+            <th> Last Name </th>
+            <td><%=userData.LastName %></td>
             <th>Email Address</th>
+            <td><%=userData.Email  %></td>
             <th>Phone Number</th>
+            <td><%=userData.Phone %></td>
             <th>Company</th>
+            <td><%=userData.Company %></td>
         </tr>
-        <%
-        if(userData.length!=0){
-        var i=1;
-        userData.forEach(function(data){
-        %>
-        <tr>
-            <td><%=data.Name %></td>
-            <td><%=data.LastName %></td>
-            <td><%=data.Email  %></td>
-            <td><%=data.Phone %></td>
-            <td><%=data.Company %></td>
-        </tr>
-        <%  i++; }) %>
-        <% } else{ %>
-            <tr>
-                <td colspan="7">No Data Found</td>
-            </tr>
-        <% } %>
     </table>
     </div>
 </body>
