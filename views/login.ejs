@@ -16,6 +16,11 @@
       <button id='initial'>Εγγραφή</button>
     </form>
   </div>
+  <% if (error) { %>
+      <script language="javascript">
+        alert("<%= error %>");
+      </script>
+  <% } %>
   <div id="login" class="modal"> 
     <form class="modal-content animate" action="/login" method="post">
       <div class="container">

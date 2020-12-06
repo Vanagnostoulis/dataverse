@@ -15,21 +15,19 @@ var mysql =	require("../db.js"),
         if(rows.length <= 0){
             connection.query(insertQuery, insertparams, function(err, rows, fields) {
                 if(err){
-                    console.log("signup: error adding user")
+                    req.session.error = 'Internal error happened. Try again';
                     connection.release();
                     callback(true, null);
                 }else{
-                    console.log("signup: user added to Database")
+                    req.session.error = 'User added to database';
                     connection.release();
                     callback(null, true);       
                 }
             });
         }else{
             // exists tell him to log in
+            req.session.error = 'Email exists log in';
             connection.release();
-            console.log(rows)
-            console.log(fields)
-            console.log("signup: user exists")
             res.redirect('/login');
         }
     });

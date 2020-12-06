@@ -9,7 +9,8 @@ router.get('/login', function(req, res) {
   res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
   res.header('Expires', '-1');
   res.header('Pragma', 'no-cache');// if no user logged in or someone logged out go to first page
-  res.render('login');
+  res.render('login', { error: req.session.error });
+  delete res.session.error;
 });
 
 router.get('/signup', function(req, res) {
@@ -48,7 +49,6 @@ router.post('/logout', function(req, res) {
 router.post('/signup', function(req, res) {
   signup.addUser(req, res, function(err, data) {
     if (err) {
-      console.log('Error adding user .. !');
       res.redirect(400,'/');
     } else {
       res.redirect('/login');
@@ -59,7 +59,7 @@ router.post('/signup', function(req, res) {
 router.post('/login', function(req, res) {
   login.loginUser(req, res, function(err, data) {
     if (err) {
-      console.log("Error in log in" )
+      req.session.error = 'Incorrect username or password';
       res.redirect('/login');
     } else {
       res.redirect('/logged');

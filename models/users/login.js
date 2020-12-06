@@ -31,7 +31,7 @@ login.prototype.loginUser = function(req, res, callback){
         connection.query(loginUserQuery, params, function(err, rows, fields) {
             // cant connect
             if(rows.length <= 0){ 
-                console.log("problem logging in");
+                req.session.error = 'Incorrect username or password';
                 connection.release();
                 callback(true, null);
             }else{
