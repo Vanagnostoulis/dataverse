@@ -2,10 +2,15 @@ var express = require('express'),
     router  = express.Router(),
     login   = require('../models/users/login.js'),
     logout  = require('../models/users/logout.js'),
+    change  = require('../models/users/change.js'),
     signup  = require('../models/users/signup.js');
 /********************************* GET *******************************/
 router.get('/login',authenticationMiddlewarelogin, function(req, res) {
   res.redirect('/logged');
+});
+
+router.get('/changepassword', function(req, res) {
+  res.render('change');
 });
 
 router.get('/signup',authenticationMiddlewaresignup, function(req, res) {
@@ -60,6 +65,15 @@ router.post('/login', function(req, res) {
   });
 });
 
+router.post('/changepassword', function(req, res) {
+  change.changePass(req, res, function(err, data) {
+    if (err) {
+      res.redirect('/changepassword');
+    } else {
+      res.redirect('/logged');
+    }
+  });
+});
 /********************************************************/
 /********************* MIDDLEWARES **********************/
 //used in the case of opening another window and user is already logged in

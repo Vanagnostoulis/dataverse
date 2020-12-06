@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/user.css">
+    <link rel="stylesheet" type="text/css" href="../public/css/user.css">
+    <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+    <body>
+      <div class="dropdown-content" id='dropdown'>
+        <form action='/' method="get">
+          <button id='initial'>Αρχική</button>
+        </form>
+        <form action='/logout' method="post">   
+          <button id='logout_btn' >Αποσύνδεση</button>  
+        </form>
+      </div>
+      <div id="passcng" class="modal"> 
+        <form class="modal-content animate" onsubmit="return PasswordValidator(event)" action="/changepassword" method="post">
+          <div class="container">
+            <script type="text/javascript">
+              function PasswordValidator(e) {
+                var passwordstrength = document.getElementById('pass_reg');
+                var regex = new Array();
+                regex.push("[A-Z]"); //Uppercase Alphabet.
+                regex.push("[a-z]"); //Lowercase Alphabet.
+                regex.push("[0-9]"); //Digit.
+                regex.push("[!@#$%^&*]"); //Special Character.
+
+                var passed = 0;
+                for (var i = 0; i < regex.length; i++) {
+                    if (new RegExp(regex[i]).test(passwordstrength.value)) {
+                        passed++;
+                    }
+                }
+                if (!(passed > 3)) {
+                    alert("Password must contain at least 1 capital letter,\n\n1 small letter, 1 number and 1 special character.\n\nFor special characters you can pick one of these: \n -,(,!,@,#,$,),%,<,>");
+                    e.preventDefault();
+                    res.render('/');
+                    return false;
+                }
+                else
+               {
+                    var pass1 = passwordstrength.value;
+                    var pass2 = document.getElementById('repass_reg').value;
+                    if(pass1 != pass2)  
+                    {
+                        alert("password mismatch");
+                        e.preventDefault();
+                        res.render('/');
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
+                }
+
+          }
+          </script>
+          <label for="header_signup"><p style="text-align:left; font-size: 17px; font: cursive;"><b style="border-bottom: 3px solid #009999;"> Αλλαγή </b></p></label>
+          <input type="password" id="pass_reg" placeholder="Password" style="font-family:Arial, FontAwesome" name="pass_reg" required><br>
+          <input type="password" id="repass_reg" placeholder="Repeat password" style="font-family:Arial, FontAwesome" name="repass_reg" required><br>
+          <button type="submit" class="passcng_btn"><b> Αλλαγή</b></button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
+
